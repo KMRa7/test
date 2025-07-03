@@ -552,9 +552,9 @@
 
          <div class="label">仕事内容</div>
         <div class="Introduction-buttons">
-            <button type="button" id="onechance" onclick="selectIntroduction(this)">デスクワーク</button>
-            <button type="button" id="twochance" onclick="selectIntroduction(this)">外回り営業</button>
-            <button type="button" id="threechance" onclick="selectIntroduction(this)">現場仕事</button>
+            <button type="button" id="oneIntroduction" onclick="selectIntroduction(this)">デスクワーク</button>
+            <button type="button" id="twoIntroduction" onclick="selectIntroduction(this)">外回り営業</button>
+            <button type="button" id="threeIntroduction" onclick="selectIntroduction(this)">現場仕事</button>
         </div>
 
         <div class="label">趣味・スポーツ</div>
@@ -608,15 +608,13 @@
         }
         //複数選択のコード
         function selectdemand(element) {
-            // すでに active クラスが付いていれば外し、付いていなければ追加する（トグル）
-            element.classList.toggle('active');
+            // 単一選択項目の処理コード
+            const buttons = document.querySelectorAll('.demand-buttons button');
+            buttons.forEach(button => button.classList.remove('active'));
 
-            // 選択されているすべてのボタンのテキストを取得して配列にする
-            const activeButtons = document.querySelectorAll('.demand-buttons button.active');
-            const selectedDemands = Array.from(activeButtons).map(button => button.innerText);
-
-            // 必要に応じて選択された内容を格納
-            demandCount = selectedDemands;  // 配列として保持
+            // 選択されたボタンだけにactiveクラスを追加
+            element.classList.add('active');
+            demandCount = element.innerText;
         }
 
         function selectchance(element) {
